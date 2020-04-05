@@ -19,6 +19,9 @@ public class Constants {
     // 请求图片基本URL
     public static final String BASE_URl_IMAGE = BASE+"/atguigu/img";
 
+    public static final String BASE_URl_GAME = BASE+"/atguigu/game";
+
+    public static final String BASE_URl_GAME_SPLASH = BASE_URl_GAME + "/splash.json";
 
     //小裙子
     public static final String SKIRT_URL = BASE_URL_JSON + "SKIRT_URL.json";

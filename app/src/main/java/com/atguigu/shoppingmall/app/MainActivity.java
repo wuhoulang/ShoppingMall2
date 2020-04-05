@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -54,12 +55,12 @@ public class MainActivity extends FragmentActivity {
 
     private void initFragment() {
         fragments = new ArrayList<>();
-        typeFragment = new TypeFragment();
+//        typeFragment = new TypeFragment();
         fragments.add(new HomeFragment());
-        fragments.add(typeFragment);
+//        fragments.add(typeFragment);
 //        fragments.add(new CommunityFragment());
         fragments.add(new OpenFragment());
-        fragments.add(new ShoppingCartFragment());
+//        fragments.add(new ShoppingCartFragment());
         fragments.add(new UserFragment());
     }
 
@@ -71,17 +72,19 @@ public class MainActivity extends FragmentActivity {
                     case R.id.rb_home:
                         position = 0;
                         break;
-                    case R.id.rb_type:
+//                    case R.id.rb_type:
+//                        position = 1;
+//                        break;
+                    case R.id.rb_community:
                         position = 1;
                         break;
-                    case R.id.rb_community:
+//                    case R.id.rb_cart:
+//                        position = 3;
+//                        break;
+                    case R.id.rb_user:
                         position = 2;
                         break;
-                    case R.id.rb_cart:
-                        position = 3;
-                        break;
-                    case R.id.rb_user:
-                        position = 4;
+                    default:
                         break;
                 }
 
@@ -96,7 +99,6 @@ public class MainActivity extends FragmentActivity {
 
 
     /**
-     *
      * @param position
      * @return
      */

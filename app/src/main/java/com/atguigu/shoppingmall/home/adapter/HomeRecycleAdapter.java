@@ -67,25 +67,25 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     /**
      * 频道
      */
-    public static final int CHANNEL = 1;
+//    public static final int CHANNEL = 1;
 
     /**
      * 活动
      */
-    public static final int ACT = 2;
+//    public static final int ACT = 2;
 
     /**
      * 秒杀
      */
-    public static final int SECKILL = 2;
+//    public static final int SECKILL = 2;
     /**
      * 推荐
      */
-    public static final int RECOMMEND = 3;
+//    public static final int RECOMMEND = 3;
     /**
      * 热卖
      */
-    public static final int HOT = 4;
+    public static final int HOT = 1;
 
     /**
      * 当前类型
@@ -138,15 +138,15 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             case BANNER:
                 currentType = BANNER;
                 break;
-            case CHANNEL:
-                currentType = CHANNEL;
-                break;
-            case SECKILL:
-                currentType = SECKILL;
-                break;
-            case RECOMMEND:
-                currentType = RECOMMEND;
-                break;
+//            case CHANNEL:
+//                currentType = CHANNEL;
+//                break;
+//            case SECKILL:
+//                currentType = SECKILL;
+//                break;
+//            case RECOMMEND:
+//                currentType = RECOMMEND;
+//                break;
             case HOT:
                 currentType = HOT;
                 break;
@@ -165,24 +165,26 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      */
     @Override
     public int getItemCount() {
-        return 5;
+        return 2;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == BANNER) {
             return new BannerViewHolder(mLayoutInflater.inflate(R.layout.banner_viewpager, null), mContext, resultBean);
-        } else if (viewType == CHANNEL) {
-            return new ChannelViewHolder(mLayoutInflater.inflate(R.layout.channel_item, null), mContext);
-        } else if (viewType == SECKILL) {
-            return new SeckillViewHolder(mLayoutInflater.inflate(R.layout.seckill_item, null), mContext);
-        } else if (viewType == RECOMMEND) {
-            return new RecommendViewHolder(mLayoutInflater.inflate(R.layout.recommend_item, null), mContext);
-        } else if (viewType == HOT) {
+        }  else if (viewType == HOT) {
             return new HotViewHolder(mLayoutInflater.inflate(R.layout.hot_item, null), mContext);
         }
         return null;
     }
+
+//     else if (viewType == CHANNEL) {
+//        return new ChannelViewHolder(mLayoutInflater.inflate(R.layout.channel_item, null), mContext);
+//    } else if (viewType == SECKILL) {
+//        return new SeckillViewHolder(mLayoutInflater.inflate(R.layout.seckill_item, null), mContext);
+//    } else if (viewType == RECOMMEND) {
+//        return new RecommendViewHolder(mLayoutInflater.inflate(R.layout.recommend_item, null), mContext);
+//    }
 
 //    else if (viewType == ACT) {
 //        return new ActViewHolder(mLayoutInflater.inflate(R.layout.act_item, null), mContext);
@@ -199,20 +201,22 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (getItemViewType(position) == BANNER) {
             BannerViewHolder bannerViewHolder = (BannerViewHolder) holder;
             bannerViewHolder.setData(resultBean.getBanner_info());
-        } else if (getItemViewType(position) == CHANNEL) {
-            ChannelViewHolder channelViewHolder = (ChannelViewHolder) holder;
-            channelViewHolder.setData(resultBean.getChannel_info());
-        } else if (getItemViewType(position) == SECKILL) {
-            SeckillViewHolder seckillViewHolder = (SeckillViewHolder) holder;
-            seckillViewHolder.setData(resultBean.getSeckill_info());
-        } else if (getItemViewType(position) == RECOMMEND) {
-            RecommendViewHolder recommendViewHolder = (RecommendViewHolder) holder;
-            recommendViewHolder.setData(resultBean.getRecommend_info());
         } else if (getItemViewType(position) == HOT) {
             HotViewHolder hotViewHolder = (HotViewHolder) holder;
             hotViewHolder.setData(resultBean.getHot_info());
         }
     }
+
+//    else if (getItemViewType(position) == CHANNEL) {
+//        ChannelViewHolder channelViewHolder = (ChannelViewHolder) holder;
+//        channelViewHolder.setData(resultBean.getChannel_info());
+//    } else if (getItemViewType(position) == SECKILL) {
+//        SeckillViewHolder seckillViewHolder = (SeckillViewHolder) holder;
+//        seckillViewHolder.setData(resultBean.getSeckill_info());
+//    } else if (getItemViewType(position) == RECOMMEND) {
+//        RecommendViewHolder recommendViewHolder = (RecommendViewHolder) holder;
+//        recommendViewHolder.setData(resultBean.getRecommend_info());
+//    }
 
 //     else if (getItemViewType(position) == ACT) {
 //        ActViewHolder actViewHolder = (ActViewHolder) holder;
@@ -249,7 +253,11 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onClick(int position) {
                     Log.e("newRecycleAdapter","position:"+position);
+
+                    String url = "";
+
                     Intent intent = new Intent(mContext, OpenDetailsActivity.class);
+                    intent.putExtra("url",url);
                     mContext.startActivity(intent);
                 }
             });

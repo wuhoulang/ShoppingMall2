@@ -9,11 +9,14 @@ package com.atguigu.shoppingmall.app;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -33,7 +36,16 @@ import java.util.List;
 import android.app.AlertDialog.Builder;
 
 import com.atguigu.shoppingmall.R;
+import com.atguigu.shoppingmall.interf.ModelCallback;
+import com.atguigu.shoppingmall.utils.Constants;
+import com.atguigu.shoppingmall.utils.OkHttpUtil;
 import com.atguigu.shoppingmall.utils.ScreenUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MySplashActivity extends Activity implements View.OnClickListener {
     private String LogTag = "TT";
@@ -44,30 +56,59 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
     private ImageView imageView;
     private Button bt_splash;
     private AnimationSet animationSet;
+    private Context mContext = MySplashActivity.this;
     String[] permissions = new String[]{"android.permission.READ_PHONE_STATE",
             "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"};
 
+    private Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            if (msg.what == 1) {
+                Log.e("MySplashActivity'", "--splashResIds:-----------------------" + splashResIds.get(0) + splashResIds.get(1));
+//                Glide.with(MySplashActivity.this).load(splashResIds.get(splashIndex)).into(imageView);
+//                Glide.with(mContext)
+//                        .load(splashResIds.get(splashIndex))
+//                        .into(imageView);
+//                Log.e("MySplashActivity'", "--mHandler:-----------------------
+                if (splashResIds.get(0) == R.drawable.xiao_splash_v_0) {
+                    Glide.with(mContext)
+                            .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_0.png")
+                            .into(imageView);
+                }
+
+                if (splashResIds.get(1) == R.drawable.xiao_splash_v_1) {
+                    Log.e("MySplashActivity", "---------splashResIdsdsfa-----55555555----");
+                    Glide.with(mContext)
+                            .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
+                            .into(imageView);
+                }
+            }
+            return false;
+        }
+    });
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(1);
-        getWindow().addFlags(1024);
+//        requestWindowFeature(1);
+//        getWindow().addFlags(1024);
         // if (Build.VERSION.SDK_INT >= 23) {
         // this.needPermissions = getNeedPermissions();
         // } else {
         // this.needPermissions = new ArrayList<>();
         // }
-        String splashPrefix = ScreenUtils.isVerticalScreen(this) ? "xiao_splash_v_" : "xiao_splash_h_";
-        int splashIndex = 0;
-        if (findDrawableId(splashPrefix + splashIndex) != 0) {
-            for (; ; ) {
-                int id = findDrawableId(splashPrefix + splashIndex);
-                if (id == 0) {
-                    break;
-                }
-                this.splashResIds.add(Integer.valueOf(id));
-                splashIndex++;
-            }
-        }
+
+//        String splashPrefix = ScreenUtils.isVerticalScreen(this) ? "xiao_splash_v_" : "xiao_splash_h_";
+//        int splashIndex = 0;
+//        if (findDrawableId(splashPrefix + splashIndex) != 0) {
+//            for (; ; ) {
+//                int id = findDrawableId(splashPrefix + splashIndex);
+//                if (id == 0) {
+//                    break;
+//                }
+//                this.splashResIds.add(Integer.valueOf(id));
+//                splashIndex++;
+//            }
+//        }
 //		this.imageView = new ImageView(this);
 //		this.imageView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
 //		this.imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -77,7 +118,49 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
         imageView = findViewById(R.id.iv_splash);
         bt_splash = findViewById(R.id.bt_splash);
         bt_splash.setOnClickListener(this);
+
+
+//        Glide.with(mContext)
+//                .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
+//                .into(imageView);
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                OkHttpUtil.getInstance().getOkHttp(Constants.BASE_URl_GAME_SPLASH, new ModelCallback() {
+//                    @Override
+//                    public void onSuccess(String s) {
+//                        Log.e("MySplashActivity'", "--onSuccess--"+s);
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(s);
+//                            String content = jsonObject.getString("Content");
+//                            JSONObject jsonObject2  = new JSONObject(content);
+//                            String picture = jsonObject2.getString("picture");
+//                            JSONArray jsonArray = new JSONArray(picture);
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonObject1  = (JSONObject) jsonArray.get(i);
+//                                String picUrl = jsonObject1.getString("picUrl");
+//                                Log.e("MySplashActivity'", "--picUrl:--"+picUrl);
+//                                splashResIds.add(picUrl);
+//                            }
+//                            Log.e("MySplashActivity'", "--splashResIds.size():--"+splashResIds.size());
+//                            showSplash();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(String responseData) {
+//                        Log.e("MySplashActivity'", "--onFailure--"+responseData);
+//                    }
+//                });
+//            }
+//        }).start();
+
         showSplash();
+
     }
 
     private int findDrawableId(String resName) {
@@ -95,37 +178,64 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
     }
 
     private void showSplash() {
-        if (this.splashIndex < this.splashResIds.size()) {
+        Log.e("MySplashActivity", "--showSplash11111111");
 
-            this.imageView.setImageResource(((Integer) this.splashResIds.get(this.splashIndex)).intValue());
 
-            AlphaAnimation alpha1 = new AlphaAnimation(1.0F, 1.0F);
-            alpha1.setInterpolator(new DecelerateInterpolator());
-            alpha1.setDuration(1000L);
-            AlphaAnimation alpha2 = new AlphaAnimation(1.0F, 1.0F);
-            alpha2.setInterpolator(new AccelerateInterpolator());
-            alpha2.setStartOffset(500L);
-            alpha2.setDuration(1000L);
-             animationSet = new AnimationSet(false);
-            animationSet.addAnimation(alpha1);
-            animationSet.addAnimation(alpha2);
-            animationSet.setAnimationListener(new Animation.AnimationListener() {
-                public void onAnimationEnd(Animation animation) {
-                    MySplashActivity.this.splashIndex += 1;
-                    MySplashActivity.this.imageView.setVisibility(View.INVISIBLE);
-                    MySplashActivity.this.showSplash();
-                }
+        if (this.splashIndex < 2) {
 
-                public void onAnimationRepeat(Animation animation) {
-                }
+//            this.imageView.setImageResource(((Integer) this.splashResIds.get(this.splashIndex)).intValue());
+//            mHandler.sendEmptyMessage(1);
+            Log.e("MySplashActivity", "--splashIndex:"+splashIndex);
 
-                public void onAnimationStart(Animation animation) {
-                }
-            });
-            this.imageView.startAnimation(animationSet);
-            this.imageView.setVisibility(View.VISIBLE);
+            if (splashIndex== 0) {
+                Glide.with(mContext)
+                        .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_0.png")
+                        .into(imageView);
+                splashIndex += 1;
+                 showSplash();
+            }else if (splashIndex== 1) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.with(mContext)
+                                .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
+                                .into(imageView);
+                        splashIndex += 1;
+                        showSplash();
+                    }
+                },5000);
+
+            }
+
+//            AlphaAnimation alpha1 = new AlphaAnimation(1.0F, 1.0F);
+//            alpha1.setInterpolator(new DecelerateInterpolator());
+//            alpha1.setDuration(2000L);
+//            AlphaAnimation alpha2 = new AlphaAnimation(1.0F, 0F);
+//            alpha2.setInterpolator(new AccelerateInterpolator());
+//            alpha2.setStartOffset(500L);
+//            alpha2.setDuration(5000L);
+//            animationSet = new AnimationSet(false);
+////            animationSet.addAnimation(alpha1);
+//            animationSet.addAnimation(alpha2);
+//            animationSet.setAnimationListener(new Animation.AnimationListener() {
+//                public void onAnimationEnd(Animation animation) {
+//                    Log.e("MySplashActivity", "-----onAnimationEnd-----------");
+//                    splashIndex += 1;
+////                    MySplashActivity.this.imageView.setVisibility(View.INVISIBLE);
+////                    showSplash();
+//                }
+//
+//                public void onAnimationRepeat(Animation animation) {
+//                }
+//
+//                public void onAnimationStart(Animation animation) {
+//                }
+//            });
+//            imageView.startAnimation(animationSet);
+//            this.imageView.setVisibility(View.VISIBLE);
         } else {
             requestPermissions(this.permissions);
+            Log.e("MySplashActivity'", "--requestPermissions:--");
         }
     }
 

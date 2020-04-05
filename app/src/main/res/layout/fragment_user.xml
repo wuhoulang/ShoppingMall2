@@ -76,6 +76,7 @@
                 android:background="#eee" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp">
@@ -135,87 +136,87 @@
                     android:textColor="#5d5d5d" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="8dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_location"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_address"
-                android:text="收货地址" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_location"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_address"-->
+                <!--android:text="收货地址" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_collect"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_collect"
-                android:text="我的收藏" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_collect"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_collect"-->
+                <!--android:text="我的收藏" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_coupon"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_coupon"
-                android:text="我的优惠券" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_coupon"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_coupon"-->
+                <!--android:text="我的优惠券" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_score"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_score"
-                android:text="我的瓜子" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_score"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_score"-->
+                <!--android:text="我的瓜子" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_prize"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_prize"
-                android:text="我的奖品" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_prize"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_prize"-->
+                <!--android:text="我的奖品" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_ticket"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_icon_ticket"
-                android:text="我的电子票" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_ticket"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_icon_ticket"-->
+                <!--android:text="我的电子票" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="8dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_invitation"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_invitation"
-                android:text="邀请分享" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_invitation"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_invitation"-->
+                <!--android:text="邀请分享" />-->
 
             <View
                 android:layout_width="match_parent"
@@ -229,22 +230,22 @@
                 android:drawableLeft="@drawable/user_channel_icon_callcenter"
                 android:text="客服中心" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="45dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="45dp"-->
+                <!--android:background="#eee" />-->
 
-            <TextView
-                android:id="@+id/tv_user_feedback"
-                style="@style/TextStyle"
-                android:drawableLeft="@drawable/user_channel_icon_feedback"
-                android:text="服务反馈" />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_user_feedback"-->
+                <!--style="@style/TextStyle"-->
+                <!--android:drawableLeft="@drawable/user_channel_icon_feedback"-->
+                <!--android:text="服务反馈" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#eee" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="8dp"-->
+                <!--android:background="#eee" />-->
         </LinearLayout>
 
     </ScrollView>
