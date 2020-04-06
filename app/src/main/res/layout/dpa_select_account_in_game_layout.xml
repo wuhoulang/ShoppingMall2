@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp" >
+
+    <RelativeLayout
+        android:id="@+id/aps_select_ly_rl"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" >
+
+            <Button
+                android:id="@+id/aps_select_ly_add_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:background="@android:color/transparent"
+                android:text="+增加小号"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/aps_select_ly_sm_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_alignBaseline="@+id/aps_select_ly_add_btn"
+                android:layout_alignBottom="@+id/aps_select_ly_add_btn"
+                android:layout_marginRight="14dp"
+                android:layout_toLeftOf="@+id/aps_select_ly_add_btn"
+                android:background="@android:color/transparent"
+                android:text="小号说明"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/dpa_authentication_iv_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:text="请选择一下小号登录"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/aps_select_account_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aps_select_ly_rl"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
+
+</RelativeLayout>

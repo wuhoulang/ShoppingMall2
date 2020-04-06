@@ -51,7 +51,7 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
     private String LogTag = "TT";
     private boolean isCheckPermissions = false;
     private static int REQUEST_CODE = 1;
-    private List<Integer> splashResIds = new ArrayList<>();
+    private List<String> splashResIds = new ArrayList<>();
     private int splashIndex = 0;
     private ImageView imageView;
     private Button bt_splash;
@@ -65,23 +65,19 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
         public boolean handleMessage(Message msg) {
             if (msg.what == 1) {
                 Log.e("MySplashActivity'", "--splashResIds:-----------------------" + splashResIds.get(0) + splashResIds.get(1));
-//                Glide.with(MySplashActivity.this).load(splashResIds.get(splashIndex)).into(imageView);
-//                Glide.with(mContext)
-//                        .load(splashResIds.get(splashIndex))
-//                        .into(imageView);
-//                Log.e("MySplashActivity'", "--mHandler:-----------------------
-                if (splashResIds.get(0) == R.drawable.xiao_splash_v_0) {
-                    Glide.with(mContext)
-                            .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_0.png")
-                            .into(imageView);
-                }
-
-                if (splashResIds.get(1) == R.drawable.xiao_splash_v_1) {
-                    Log.e("MySplashActivity", "---------splashResIdsdsfa-----55555555----");
-                    Glide.with(mContext)
-                            .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
-                            .into(imageView);
-                }
+                Glide.with(mContext)
+                        .load(splashResIds.get(splashIndex))
+                        .into(imageView);
+                splashIndex += 1;
+                showSplash();
+            } else if (msg.what == 2) {
+                Glide.with(mContext)
+                        .load(splashResIds.get(splashIndex))
+                        .into(imageView);
+                splashIndex += 1;
+                mHandler.sendEmptyMessageDelayed(3, 2000);
+            } else if (msg.what == 3) {
+                showSplash();
             }
             return false;
         }
@@ -119,49 +115,37 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
         bt_splash = findViewById(R.id.bt_splash);
         bt_splash.setOnClickListener(this);
 
+        OkHttpUtil.getInstance().getOkHttp(Constants.BASE_URl_GAME_SPLASH, new ModelCallback() {
+            @Override
+            public void onSuccess(String s) {
+                Log.e("MySplashActivity'", "--onSuccess--" + s);
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    String content = jsonObject.getString("Content");
+                    JSONObject jsonObject2 = new JSONObject(content);
+                    String picture = jsonObject2.getString("picture");
+                    JSONArray jsonArray = new JSONArray(picture);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
+                        String picUrl = jsonObject1.getString("picUrl");
+                        Log.e("MySplashActivity'", "--picUrl:--" + picUrl);
+                        splashResIds.add(picUrl);
+                    }
+                    Log.e("MySplashActivity'", "--splashResIds.size():--" + splashResIds.size());
+                    showSplash();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-//        Glide.with(mContext)
-//                .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
-//                .into(imageView);
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                OkHttpUtil.getInstance().getOkHttp(Constants.BASE_URl_GAME_SPLASH, new ModelCallback() {
-//                    @Override
-//                    public void onSuccess(String s) {
-//                        Log.e("MySplashActivity'", "--onSuccess--"+s);
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(s);
-//                            String content = jsonObject.getString("Content");
-//                            JSONObject jsonObject2  = new JSONObject(content);
-//                            String picture = jsonObject2.getString("picture");
-//                            JSONArray jsonArray = new JSONArray(picture);
-//                            for (int i = 0; i < jsonArray.length(); i++) {
-//                                JSONObject jsonObject1  = (JSONObject) jsonArray.get(i);
-//                                String picUrl = jsonObject1.getString("picUrl");
-//                                Log.e("MySplashActivity'", "--picUrl:--"+picUrl);
-//                                splashResIds.add(picUrl);
-//                            }
-//                            Log.e("MySplashActivity'", "--splashResIds.size():--"+splashResIds.size());
-//                            showSplash();
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(String responseData) {
-//                        Log.e("MySplashActivity'", "--onFailure--"+responseData);
-//                    }
-//                });
-//            }
-//        }).start();
+            }
 
-        showSplash();
-
+            @Override
+            public void onFailure(String responseData) {
+                Log.e("MySplashActivity'", "--onFailure--" + responseData);
+            }
+        });
     }
+
 
     private int findDrawableId(String resName) {
         return getResources().getIdentifier(resName, "drawable", getPackageName());
@@ -181,30 +165,15 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
         Log.e("MySplashActivity", "--showSplash11111111");
 
 
-        if (this.splashIndex < 2) {
+        if (this.splashIndex < splashResIds.size()) {
 
 //            this.imageView.setImageResource(((Integer) this.splashResIds.get(this.splashIndex)).intValue());
 //            mHandler.sendEmptyMessage(1);
-            Log.e("MySplashActivity", "--splashIndex:"+splashIndex);
-
-            if (splashIndex== 0) {
-                Glide.with(mContext)
-                        .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_0.png")
-                        .into(imageView);
-                splashIndex += 1;
-                 showSplash();
-            }else if (splashIndex== 1) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Glide.with(mContext)
-                                .load("http://192.168.8.119:80/atguigu/game_img/xiao_splash_v_1.png")
-                                .into(imageView);
-                        splashIndex += 1;
-                        showSplash();
-                    }
-                },5000);
-
+            Log.e("MySplashActivity", "--splashIndex:" + splashIndex);
+            if (splashIndex == 0) {
+                mHandler.sendEmptyMessage(1);
+            } else {
+                mHandler.sendEmptyMessageDelayed(2, 2000);
             }
 
 //            AlphaAnimation alpha1 = new AlphaAnimation(1.0F, 1.0F);
@@ -270,7 +239,6 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
                         + permissions[i] + ",grantResults:" + grantResults[i]);
             }
         }
-
         Log.d("TT", "DJ_GetPermissionsActivity-->requestCode:" + requestCode + ",permissions:" + permissions
                 + ",grantResults:" + grantResults);
         if (requestCode == REQUEST_CODE && grantResults.length > 0) {
@@ -314,6 +282,15 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
                 }
             }).create().show();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeMessages(1);
+        mHandler.removeMessages(2);
+        mHandler.removeMessages(3);
+        Glide.with(getApplicationContext()).pauseRequests();
     }
 
     private void startActivity() {
@@ -378,6 +355,9 @@ public class MySplashActivity extends Activity implements View.OnClickListener {
             case R.id.bt_splash:
 //                 startActivity();
 //                 finish();
+                mHandler.removeMessages(1);
+                mHandler.removeMessages(2);
+                mHandler.removeMessages(3);
                 requestPermissions(this.permissions);
                 break;
             default:

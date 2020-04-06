@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="安全中心"
+        android:layout_gravity="center_horizontal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="45dp"
+        android:background="#eee" />
+
+    <TextView
+        android:id="@+id/tv_change_password"
+        style="@style/TextStyle"
+        android:drawableLeft="@drawable/user_channel_icon_callcenter"
+        android:text="修改密码" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="45dp"
+        android:background="#eee" />
+
+    <TextView
+        android:id="@+id/tv_set_phone"
+        style="@style/TextStyle"
+        android:drawableLeft="@drawable/user_channel_icon_feedback"
+        android:text="手机绑定" />
+
+    <TextView
+        android:id="@+id/tv_certification"
+        style="@style/TextStyle"
+        android:drawableLeft="@drawable/user_channel_icon_feedback"
+        android:text="实名认证" />
+
+</LinearLayout>

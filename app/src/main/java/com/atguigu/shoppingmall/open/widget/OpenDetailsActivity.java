@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.alipay.security.mobile.module.deviceinfo.AppInfo;
@@ -30,12 +31,6 @@ import butterknife.ButterKnife;
 public class OpenDetailsActivity extends Activity implements View.OnClickListener {
 
     AppInfo appInfo;
-    @Bind(R.id.detail_iv_icon)
-    ImageView mIvIcon;
-    @Bind(R.id.detail_tv_name)
-    TextView mTvName;
-    @Bind(R.id.detail_tv_company)
-    TextView mTvCompany;
     @Bind(R.id.detail_tv_decription)
     ExpandTextView mTvDecription;
     @Bind(R.id.detail_tv_updateLog)
@@ -48,7 +43,8 @@ public class OpenDetailsActivity extends Activity implements View.OnClickListene
     TextView mTvCommentNum;
     @Bind(R.id.detail_tv_permission)
     TextView mTvPermission;
-
+    @Bind(R.id.pb_download)
+    ProgressBar pb_download;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +60,14 @@ public class OpenDetailsActivity extends Activity implements View.OnClickListene
 
     private void initView() {
         mTvDownload.setOnClickListener(this);
-
-        String url = getIntent().getStringExtra("url");
-
+        mTvDecription.setOnClickListener(this);
+//        String url = getIntent().getStringExtra("url");
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.detail_tv_download:
+            case R.id.detail_tv_decription:
 
                 String url = "http://acj5.pc6.com/pc6_soure/2020-4-1/a793f1e85f5768aWRDcQFWjON8sOp4.apk";
 
@@ -81,6 +76,7 @@ public class OpenDetailsActivity extends Activity implements View.OnClickListene
                 FileDownloadManager.getInstance().startDownLoadFileSingle(url, path, new SuccessCallBack() {
                     @Override
                     public void onCompleted(BaseDownloadTask task) {
+                        pb_download.setProgress(100);
                         Log.e("OpenDetailsActivity","------------onCompleted-------------");
                     }
 
@@ -92,6 +88,7 @@ public class OpenDetailsActivity extends Activity implements View.OnClickListene
                     @Override
                     public void onProgress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
                        int bbb = (int) (soFarBytes * 1.0f / totalBytes * 100);
+                        pb_download.setProgress(bbb);
                         Log.e("OpenDetailsActivity","------------onProgress-------------"+",soFarBytes:"+soFarBytes+",totalBytes:"+totalBytes);
                         Log.e("OpenDetailsActivity","------------onProgress-------------"+String.valueOf(bbb));
                     }

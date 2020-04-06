@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="12dp" />
+            <solid android:color="#eaeaea"/>
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <scale
+            android:scaleWidth="100%"
+            android:drawable="@drawable/property_star_progress_scale"/>
+        <!--android:scaleWidth="50%"-->
+        <!--android:drawable="@drawable/property_star_progress_scale"  bg_wuyezhixing-->
+    </item>
+
+</layer-list>

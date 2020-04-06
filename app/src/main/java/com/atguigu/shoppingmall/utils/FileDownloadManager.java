@@ -1,5 +1,7 @@
 package com.atguigu.shoppingmall.utils;
 
+import android.util.Log;
+
 import com.atguigu.shoppingmall.interf.SuccessCallBack;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
@@ -32,6 +34,7 @@ public class FileDownloadManager {
             @Override
             protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
                 //等待，已经进入下载队列
+                Log.e("FileDownloadManager","--------------pending------------");
             }
 
             @Override

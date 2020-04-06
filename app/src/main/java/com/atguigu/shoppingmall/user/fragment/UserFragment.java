@@ -3,6 +3,8 @@ package com.atguigu.shoppingmall.user.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Environment;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,9 +14,18 @@ import android.widget.Toast;
 
 import com.atguigu.shoppingmall.R;
 import com.atguigu.shoppingmall.app.LoginActivity;
+import com.atguigu.shoppingmall.app.MainActivity;
 import com.atguigu.shoppingmall.base.BaseFragment;
+import com.atguigu.shoppingmall.frame.logger.Logger;
+import com.atguigu.shoppingmall.frame.logger.Printer;
+import com.atguigu.shoppingmall.interf.SuccessCallBack;
+import com.atguigu.shoppingmall.user.activity.AlertDialog;
 import com.atguigu.shoppingmall.user.activity.MessageCenterActivity;
+import com.atguigu.shoppingmall.user.activity.UserManagerActivity;
 import com.atguigu.shoppingmall.utils.BitmapUtils;
+import com.atguigu.shoppingmall.utils.FileDownloadManager;
+import com.atguigu.shoppingmall.utils.InstallApkUtils;
+import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -64,15 +75,17 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 //        tvUserTicket = (TextView) view.findViewById(R.id.tv_user_ticket);
 //        tvUserInvitation = (TextView) view.findViewById(R.id.tv_user_invitation);
         tvUserCallcenter = (TextView) view.findViewById(R.id.tv_user_callcenter);
-//        tvUserFeedback = (TextView) view.findViewById(R.id.tv_user_feedback);
+        tvUserFeedback = (TextView) view.findViewById(R.id.tv_user_feedback);
         tvUsercenter = (TextView) view.findViewById(R.id.tv_usercenter);
         ibUserSetting = (ImageButton) view.findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) view.findViewById(R.id.ib_user_message);
         scrollView = (ScrollView) view.findViewById(R.id.scrollview);
 
+        tvUserFeedback.setOnClickListener(this);
         ibUserIconAvator.setOnClickListener(this);
         ibUserSetting.setOnClickListener(this);
         ibUserMessage.setOnClickListener(this);
+        tvUsername.setOnClickListener(this);
     }
 
     /**
@@ -93,6 +106,18 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
         } else if (v == ibUserMessage) {
             Intent intent = new Intent(mContext, MessageCenterActivity.class);
             startActivity(intent);
+        }else if (v == tvUserFeedback) {
+            Logger.e("UserFragment","-------------------");
+            Log.e("UserFragment","----onclick---tvUserFeedback------------");
+            String path = Environment.getExternalStorageDirectory()+"/Download/";
+            String filename = "王者荣耀助手.apk";
+            InstallApkUtils.installApk(mContext,path,filename);
+        }else if (v == tvUsername) {
+              Intent intent = new Intent(mContext,UserManagerActivity.class);
+              startActivity(intent);
+        }else if (v == tvUserCallcenter) {
+//           String downloadPath = "http://az2.ddooo.com/qqbroAndroid_3219.apk";
+//            String savePath = Environment.getExternalStorageDirectory()+"/Download/qqbroAndroid.apk";
         }
     }
 
