@@ -94,6 +94,7 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private final LayoutInflater mLayoutInflater;
     private RefreshLayout mRefreshLayout;
     private HotRecycleAdapter newRecycleAdapter;
+    private String url;
 
 
     public HomeRecycleAdapter(Context mContext, ResultBean resultBean, RefreshLayout refreshLayout) {
@@ -254,10 +255,14 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 public void onClick(int position) {
                     Log.e("newRecycleAdapter","position:"+position);
 
-                    String url = "";
-
+                    if (position==0){
+                         url = "http://192.168.8.119:80/atguigu/save_folder/leitingzhengjiu_Tencent_2.0.1_20191029164007.apk";
+                    }else if (position==1){
+                         url = "http://acj5.pc6.com/pc6_soure/2020-4-1/a793f1e85f5768aWRDcQFWjON8sOp4.apk";
+                    }
                     Intent intent = new Intent(mContext, OpenDetailsActivity.class);
                     intent.putExtra("url",url);
+                    intent.putExtra("pos",position);
                     mContext.startActivity(intent);
                 }
             });

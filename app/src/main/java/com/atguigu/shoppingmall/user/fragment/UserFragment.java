@@ -16,10 +16,6 @@ import com.atguigu.shoppingmall.R;
 import com.atguigu.shoppingmall.app.LoginActivity;
 import com.atguigu.shoppingmall.app.MainActivity;
 import com.atguigu.shoppingmall.base.BaseFragment;
-import com.atguigu.shoppingmall.frame.logger.Logger;
-import com.atguigu.shoppingmall.frame.logger.Printer;
-import com.atguigu.shoppingmall.interf.SuccessCallBack;
-import com.atguigu.shoppingmall.user.activity.AlertDialog;
 import com.atguigu.shoppingmall.user.activity.MessageCenterActivity;
 import com.atguigu.shoppingmall.user.activity.UserManagerActivity;
 import com.atguigu.shoppingmall.utils.BitmapUtils;
@@ -107,7 +103,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
             Intent intent = new Intent(mContext, MessageCenterActivity.class);
             startActivity(intent);
         }else if (v == tvUserFeedback) {
-            Logger.e("UserFragment","-------------------");
             Log.e("UserFragment","----onclick---tvUserFeedback------------");
             String path = Environment.getExternalStorageDirectory()+"/Download/";
             String filename = "王者荣耀助手.apk";

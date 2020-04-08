@@ -198,27 +198,37 @@
             android:background="@drawable/favorite_selector"
             android:clickable="true" />
 
+        <RelativeLayout
+            android:id="@+id/rl_download"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/tv_download"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="下载"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/black"/>
 
         <ProgressBar
+            android:alpha="0.5"
             android:id="@+id/pb_download"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
             android:thumb="@null"
             android:progressDrawable="@drawable/property_star_progress"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:max="100"
             android:progress="100"/>
+
+        </RelativeLayout>
 
         <android.support.v7.widget.CardView
             android:visibility="gone"

@@ -14,4 +14,6 @@ public interface SuccessCallBack {
 
     void onProgress(BaseDownloadTask task, int soFarBytes, int totalBytes);
 
+    void onNowProgress(long soFarBytes, long totalBytes);
+
 }
